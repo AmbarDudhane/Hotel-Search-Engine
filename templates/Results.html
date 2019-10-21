@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results</title>
+
+</head>
+<body>
+
+<h2>Search results:</h2>
+<p hidden id="query">{{ query }}:</p>
+<br><br>
+<div id="content">
+<ol id="list">
+    {% for item in data[3] %}
+    <li>
+        DOC ID = {{ item[0] }} <br>
+        {{ data[0][item[0]] | safe }} <br><br>
+        Term Frequencies: {{ data[4][item[0]] }}<br>
+        IDF : {{ data[1][item[0]] }}<br>
+        TF IDF sum = {{ item[1] }}<br>
+        <br><br>
+    </li>
+    {% endfor %}
+</ol>
+</div>
+</body>
+</html>
