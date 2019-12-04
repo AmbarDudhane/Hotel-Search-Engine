@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Captioning</title>
+    <style>
+        h1 {
+            margin-left: 550px;
+        }
+
+        .SearchText{
+            margin-left: 500px;
+            margin-top : 50px;
+            width: 350px;
+            height: 25px;
+
+            font-size: 17px;
+        }
+
+        .submit{
+            height:30px;
+        }
+
+        .headtext{
+            margin-top: 40px;
+            margin-left: 420px;
+            font-family: Arial;
+            font-size: 25px;
+        }
+
+        .resulttext{
+            font-family: Arial;
+            font-size: 25px;
+            background-color: bisque;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .column {
+          float: left;
+          width: 33.33%;
+          padding: 5px;
+        }
+
+        /* Clearfix (clear floats) */
+        .row::after {
+          content: "";
+          clear: both;
+          display: table;
+        }
+    </style>
+</head>
+<body>
+
+<form action="/show_images" method="post">
+    <input class="SearchText" id="searchbar" autocomplete="off" type="text"
+        name="search" placeholder="Search anything..">
+    <input class="submit" type="submit" id="go" value="Go">
+</form>
+<br><br>
+{% if data != "" %}
+<h2>Images Side by Side</h2>
+
+<div class="row">
+  {% for item in data[1]%}
+  <div class="column">
+    <img src="{{ data[0][item[0]] }}" alt="Snow" style="width:100%">
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+<script>
+var input = document.getElementById("searchbar");
+input.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+   event.preventDefault();
+   document.getElementById("go").click();
+  }
+});
+
+
+</script>
+</body>
+</html>
