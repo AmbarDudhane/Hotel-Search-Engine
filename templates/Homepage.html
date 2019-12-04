@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Engine</title>
+    <style>
+        h1 {
+            margin-left: 550px;
+        }
+
+        .SearchText{
+            margin-left: 500px;
+            margin-top : 50px;
+            width: 350px;
+            height: 25px;
+
+            font-size: 17px;
+        }
+
+        .submit{
+            height:25px;
+        }
+    </style>
+</head>
+<body>
+<a href="{{ url_for('classifier_display') }}">Classifier</a><br><br>
+<a href="{{ url_for('image_captioning') }}">Image Captioning</a>
+<h1>Hotel Search Engine</h1>
+<!-- input tag -->
+<form action="/submit" method="post">
+    <input class="SearchText" id="searchbar" autocomplete="off" type="text"
+        name="search" placeholder="Search anything..">
+    <input class="submit" type="submit" id="go" value="Go">
+</form>
+
+<script>
+var input = document.getElementById("searchbar");
+input.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+   event.preventDefault();
+   document.getElementById("go").click();
+  }
+});
+
+
+</script>
+</body>
+</html>
